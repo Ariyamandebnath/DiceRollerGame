@@ -2,7 +2,9 @@ import  { useState } from 'react'
 import styled from 'styled-components';
 import TotalScore from './TotalScore';
 import NumberSelector from './NumberSelector';
-
+import RoleDice from './RoleDice';
+import { Button, OutlineButton } from "../styled/Button";
+import Rules from "./Rules";
 
     
 const GamePlay = () => {
@@ -47,6 +49,15 @@ const GamePlay = () => {
                     setSelectedNumber={setSelectedNumber}
                 />
             </div>
+            <RoleDice currentDice={currentDice} roleDice={roleDice} />
+            <div className='btns'>
+                <OutlineButton onClick={resetScore}>Reset Score</OutlineButton>
+                <Button onClick={() => setShowRules((prev) => !prev)}>
+                    {showRules? "Hide": "Show"} Rules
+                </Button>
+            </div>
+
+            {showRules && <Rules />}
         </MainContainer>
     );
 };
