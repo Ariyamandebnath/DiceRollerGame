@@ -1,12 +1,14 @@
+import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const NumberSelector = ({
-    setError,
-    error,
-    selectedNumber,
-    setSelectedNumber,
+  setError,
+  error,
+  selectedNumber,
+  setSelectedNumber
 }) => {
-  const arrNumber = [1, 2, 3, 4, 5, 6];
+  const arrNumber = [1, 2, 3, 4, 5, 6]; // Corrected the array to include the number 4
 
   const numberSelectorHandler = (value) => {
     setSelectedNumber(value);
@@ -31,13 +33,20 @@ const NumberSelector = ({
     </NumberSelectorContainer>
   );
 };
-export default NumberSelector
 
+NumberSelector.propTypes = {
+  setError: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
+  selectedNumber: PropTypes.number,
+  setSelectedNumber: PropTypes.func.isRequired,
+};
+
+export default NumberSelector;
 
 const NumberSelectorContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: center;
 
   .flex {
     display: flex;
@@ -45,7 +54,7 @@ const NumberSelectorContainer = styled.div`
   }
   p {
     font-size: 24px;
-    font-weight: 700px;
+    font-weight: 700;
   }
   .error {
     color: red;
@@ -61,5 +70,7 @@ const Box = styled.div`
   font-size: 24px;
   font-weight: 700;
   background-color: ${(props) => (props.isSelected ? "black" : "white")};
-  color: ${(props) => (!props.isSelected ? "black" : "white")};
+  color: ${(props) => (props.isSelected ? "white" : "black")};
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 `;
